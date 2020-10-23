@@ -1,15 +1,20 @@
 <h1>Todos</h1>
 
-<form {{on "submit" createTodo}}>
+<form {{on "submit" this.createTodo}}>
   <Input
     type="text"
     @value={{this.newTodoName}}
+    data-test-todo-name-field
   />
-  <button type="submit">Create</button>
+  <button type="submit" data-test-create-todo>
+    Create
+  </button>
 </form>
 
 <ul>
   {{#each @model as |todo|}}
-    <li>{{todo.name}}</li>
+    <li data-test-todo-list-item>
+      {{todo.name}}
+    </li>
   {{/each}}
 </ul>
