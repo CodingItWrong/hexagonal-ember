@@ -1,3 +1,5 @@
+const MODEL_NAME = 'todo';
+
 export default class Todos {
   constructor({ store }) {
     this.store = store;
@@ -18,20 +20,20 @@ export default class Todos {
   }
 
   async create(attrs) {
-    const todo = this.store.createRecord('todo', attrs);
+    const todo = this.store.createRecord(MODEL_NAME, attrs);
     await todo.save();
     return todo;
   }
 
   async findAll() {
-    return this.store.findAll('todo');
+    return this.store.findAll(MODEL_NAME);
   }
 
   async loadAll() {
-    await this.store.findAll('todo');
+    await this.store.findAll(MODEL_NAME);
   }
 
   getAll() {
-    return this.store.peekAll('todo');
+    return this.store.peekAll(MODEL_NAME);
   }
 }
