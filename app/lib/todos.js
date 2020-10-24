@@ -1,38 +1,5 @@
-class EmberDataAPI {
-  constructor({ store, modelName }) {
-    this.store = store;
-    this.modelName = modelName;
-  }
-
-  async loadAll() {
-    await this.store.findAll(this.modelName);
-  }
-
-  async create(attrs) {
-    const todo = this.store.createRecord(this.modelName, attrs);
-    await todo.save();
-    return todo;
-  }
-}
-
-class EmberDataCache {
-  constructor({ store, modelName }) {
-    this.store = store;
-    this.modelName = modelName;
-  }
-
-  push(/* todo */) {
-    // NOOP when using EmberDataTodoAPI
-  }
-
-  pushAll(/* todos */) {
-    // NOOP when using EmberDataTodoAPI
-  }
-
-  getAll() {
-    return this.store.peekAll(this.modelName);
-  }
-}
+import EmberDataAPI from './api/emberData';
+import EmberDataCache from './cache/emberData';
 
 export default class Todos {
   static forStore(store) {
