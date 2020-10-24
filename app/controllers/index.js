@@ -1,32 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-
-class Todos {
-  constructor({ store }) {
-    this.store = store;
-  }
-
-  validate({ name }) {
-    const result = {
-      valid: true,
-      errors: {},
-    };
-
-    if (!name) {
-      result.valid = false;
-      result.errors.newTodoName = 'Name required';
-    }
-
-    return result;
-  }
-
-  async create(attrs) {
-    const todo = this.store.createRecord('todo', attrs);
-    await todo.save();
-    return todo;
-  }
-}
+import Todos from 'hexagonal-ember/lib/todos';
 
 export default class IndexController extends Controller {
   @tracked newTodoName = '';
