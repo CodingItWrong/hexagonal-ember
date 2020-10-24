@@ -21,6 +21,14 @@ class EmberDataTodoCache {
     this.store = store;
   }
 
+  push(/* todo */) {
+    // NOOP when using EmberDataTodoAPI
+  }
+
+  pushAll(/* todos */) {
+    // NOOP when using EmberDataTodoAPI
+  }
+
   getAll() {
     return this.store.peekAll(MODEL_NAME);
   }
@@ -47,12 +55,15 @@ export default class Todos {
     return result;
   }
 
-  create(attrs) {
-    return this.api.create(attrs);
+  async create(attrs) {
+    const todo = await this.api.create(attrs);
+    this.cache.push(todo);
+    return todo;
   }
 
   async loadAll() {
-    await this.api.loadAll();
+    const todos = await this.api.loadAll();
+    this.cache.pushAll(todos);
   }
 
   getAll() {
