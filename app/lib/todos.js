@@ -1,24 +1,24 @@
-const MODEL_NAME = 'todo';
-
-class EmberDataTodoAPI {
-  constructor({ store }) {
+class EmberDataAPI {
+  constructor({ store, modelName }) {
     this.store = store;
+    this.modelName = modelName;
   }
 
   async loadAll() {
-    await this.store.findAll(MODEL_NAME);
+    await this.store.findAll(this.modelName);
   }
 
   async create(attrs) {
-    const todo = this.store.createRecord(MODEL_NAME, attrs);
+    const todo = this.store.createRecord(this.modelName, attrs);
     await todo.save();
     return todo;
   }
 }
 
-class EmberDataTodoCache {
-  constructor({ store }) {
+class EmberDataCache {
+  constructor({ store, modelName }) {
     this.store = store;
+    this.modelName = modelName;
   }
 
   push(/* todo */) {
@@ -30,15 +30,16 @@ class EmberDataTodoCache {
   }
 
   getAll() {
-    return this.store.peekAll(MODEL_NAME);
+    return this.store.peekAll(this.modelName);
   }
 }
 
 export default class Todos {
   static forStore(store) {
+    const modelName = 'todo';
     return new Todos({
-      api: new EmberDataTodoAPI({ store }),
-      cache: new EmberDataTodoCache({ store }),
+      api: new EmberDataAPI({ store, modelName }),
+      cache: new EmberDataCache({ store, modelName }),
     });
   }
 
