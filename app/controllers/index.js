@@ -20,6 +20,12 @@ class Todos {
 
     return result;
   }
+
+  async create(attrs) {
+    const todo = this.store.createRecord('todo', attrs);
+    await todo.save();
+    return todo;
+  }
 }
 
 export default class IndexController extends Controller {
@@ -44,8 +50,7 @@ export default class IndexController extends Controller {
     // eslint-disable-next-line no-console
     console.log('name', this.newTodoName);
 
-    const todo = this.store.createRecord('todo', { name: this.newTodoName });
-    await todo.save();
+    await todos.create(attrs);
     this.newTodoName = '';
   }
 }
