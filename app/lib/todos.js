@@ -35,10 +35,16 @@ class EmberDataTodoCache {
 }
 
 export default class Todos {
-  constructor({ store }) {
-    this.store = store;
-    this.api = new EmberDataTodoAPI({ store });
-    this.cache = new EmberDataTodoCache({ store });
+  static forStore(store) {
+    return new Todos({
+      api: new EmberDataTodoAPI({ store }),
+      cache: new EmberDataTodoCache({ store }),
+    });
+  }
+
+  constructor({ api, cache }) {
+    this.api = api;
+    this.cache = cache;
   }
 
   validate({ name }) {

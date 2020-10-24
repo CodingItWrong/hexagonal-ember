@@ -3,7 +3,7 @@ import Todos from 'hexagonal-ember/lib/todos';
 
 export default class IndexRoute extends Route {
   async model() {
-    const todos = new Todos({ store: this.store });
+    const todos = Todos.forStore(this.store);
     await todos.loadAll();
     return todos.getAll();
   }

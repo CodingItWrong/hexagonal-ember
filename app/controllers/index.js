@@ -13,7 +13,7 @@ export default class IndexController extends Controller {
 
     const attrs = { name: this.newTodoName };
 
-    const todos = new Todos({ store: this.store });
+    const todos = Todos.forStore(this.store);
     const validation = todos.validate(attrs);
 
     if (!validation.valid) {
