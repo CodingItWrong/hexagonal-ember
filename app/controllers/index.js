@@ -47,9 +47,6 @@ export default class IndexController extends Controller {
     }
     this.errors = {};
 
-    // eslint-disable-next-line no-console
-    console.log('name', this.newTodoName);
-
     await todos.create(attrs);
     this.newTodoName = '';
   }
