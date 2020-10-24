@@ -10,6 +10,9 @@ module('Acceptance | todos', function (hooks) {
   test('creating a todo', async function (assert) {
     await visit('/');
 
+    await click('[data-test-create-todo]');
+    assert.dom('[data-test-todo-name-error]').hasText('Name required');
+
     await fillIn('[data-test-todo-name-field]', 'My Todo');
     await click('[data-test-create-todo]');
 

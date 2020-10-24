@@ -6,6 +6,11 @@
     @value={{this.newTodoName}}
     data-test-todo-name-field
   />
+  {{#if this.newTodoNameError}}
+    <p data-test-todo-name-error>
+      {{this.newTodoNameError}}
+    </p>
+  {{/if}}
   <button type="submit" data-test-create-todo>
     Create
   </button>
