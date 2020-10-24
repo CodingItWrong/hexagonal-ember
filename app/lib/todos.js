@@ -25,10 +25,6 @@ export default class Todos {
     return todo;
   }
 
-  async findAll() {
-    return this.store.findAll(MODEL_NAME);
-  }
-
   async loadAll() {
     await this.store.findAll(MODEL_NAME);
   }
