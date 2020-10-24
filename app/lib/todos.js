@@ -26,4 +26,12 @@ export default class Todos {
   async findAll() {
     return this.store.findAll('todo');
   }
+
+  async loadAll() {
+    await this.store.findAll('todo');
+  }
+
+  getAll() {
+    return this.store.peekAll('todo');
+  }
 }
