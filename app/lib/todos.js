@@ -22,4 +22,8 @@ export default class Todos {
     await todo.save();
     return todo;
   }
+
+  async findAll() {
+    return this.store.findAll('todo');
+  }
 }
