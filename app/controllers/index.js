@@ -30,7 +30,7 @@ class Todos {
 
 export default class IndexController extends Controller {
   @tracked newTodoName = '';
-  @tracked newTodoNameError = null;
+  @tracked errors = {};
 
   @action
   async createTodo(evt) {
@@ -42,10 +42,10 @@ export default class IndexController extends Controller {
     const validation = todos.validate(attrs);
 
     if (!validation.valid) {
-      this.newTodoNameError = validation.errors.newTodoName;
+      this.errors = validation.errors;
       return;
     }
-    this.newTodoNameError = null;
+    this.errors = {};
 
     // eslint-disable-next-line no-console
     console.log('name', this.newTodoName);
